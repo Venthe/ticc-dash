@@ -181,6 +181,21 @@ With this configuration, the application executes:
 
 `chronyc -n -h /var/run/chrony/chronyd.sock clients`
 
+## Containers
+
+The application can be run as a container using the provided `Dockerfile`:
+
+```bash
+docker build -t ticc-dash .
+docker run --rm -p 5000:5000 ticc-dash
+```
+
+When running alongside a Chrony container, mount the Chrony runtime socket into the dashboard container:
+
+`docker run --rm -v /var/run/chrony:/var/run/chrony:ro -p 5000:5000 ticc-dash`
+
+The container by default listens on port `5000`.
+
 ## 🧠 Troubleshooting
 
 | Problem | Solution |
@@ -198,6 +213,7 @@ More tips: <https://ticc-dash.org/docs.html#troubleshooting>.
 
 - Author: **Anoniemerd** — <https://github.com/anoniemerd>
 - Website: <https://ticc-dash.org>
+- Container support: **Venthe** - <https://github.com/venthe>
 
 Released under the **MIT License**.  
 © 2025 – TICC‑DASH Project.
